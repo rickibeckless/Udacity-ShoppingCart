@@ -60,7 +60,7 @@ function addProductToCart(productId) {
       cart.push(product);
     };
   };
-};
+}
 
 
 /* Create a function named increaseQuantity that takes in the productId as an argument
@@ -74,7 +74,7 @@ function increaseQuantity(productId) {
     cartItem.quantity++;
     cartItem.price = Math.round(cartItem.price * 100) / 100;
   };
-};
+}
 
 /* Create a function named decreaseQuantity that takes in the productId as an argument
   - decreaseQuantity should get the correct product based on the productId
@@ -91,7 +91,7 @@ function decreaseQuantity(productId) {
       removeProductFromCart(productId);
     };
   };
-};
+}
 
 /* Create a function named removeProductFromCart that takes in the productId as an argument
   - removeProductFromCart should get the correct product based on the productId
@@ -108,7 +108,7 @@ function removeProductFromCart(productId) {
       product.quantity = 0;
     };
   };
-};
+}
 
 /* Create a function named cartTotal that has no parameters
   - cartTotal should iterate through the cart to get the total of all products
@@ -119,13 +119,13 @@ function cartTotal() {
   let total = cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
   total = Math.round(total * 100) / 100;
   return total;
-};
+}
 
 /* Create a function called emptyCart that empties the products from the cart */
 
 function emptyCart() {
   cart = [];
-};
+}
 
 /* Create a function named pay that takes in an amount as an argument
   - pay will return a negative number if there is a remaining balance
@@ -136,7 +136,7 @@ function pay(amount) {
   const total = cartTotal();
   const remainingBalance = amount - total;
   return remainingBalance;
-};
+}
 
 /* Place stand out suggestions here (stand out suggestions can be found at the bottom of the project rubric.)*/
 
