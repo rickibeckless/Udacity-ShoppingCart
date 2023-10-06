@@ -12,5 +12,9 @@
   "dependencies": {
     "jest": "^27.5.1",
     "live-server": "^1.2.1"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "keywords": []
 }
