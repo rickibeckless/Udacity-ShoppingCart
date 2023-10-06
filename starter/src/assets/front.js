@@ -25,6 +25,7 @@ function drawCart() {
     let cartItems = '';
     cart.forEach((element) => {
         let itemTotal = element.price * element.quantity;
+        itemTotal = Math.round(itemTotal * 100) / 100;
 
         cartItems += `
             <div data-productId='${element.productId}'>
@@ -108,9 +109,10 @@ document.querySelector('.pay').addEventListener('click', (e) => {
     // Get input cash received field value, set to number
     let amount = document.querySelector('.received').value;
     amount *= 1;
+    amount = Math.round(amount * 100) / 100;
 
     // Set cashReturn to return value of pay()
-    let cashReturn = pay(amount);
+    let cashReturn = Math.round(pay(amount) * 100) / 100;
 
     let paymentSummary = document.querySelector('.pay-summary');
     let div = document.createElement('div');

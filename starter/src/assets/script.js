@@ -19,7 +19,7 @@ const products = [
   },
   {
     name: "Strawberry",
-    price: 1.50,
+    price: 1.55,
     quantity: 0,
     productId: 200,
     image: "../images/strawberry.jpg"
@@ -41,7 +41,7 @@ const products = [
 
 /* Declare an empty array named cart to hold the items in the cart */
 
-const cart = [];
+let cart = [];
 
 /* Create a function named addProductToCart that takes in the product productId as an argument
   - addProductToCart should get the correct product based on the productId
@@ -72,6 +72,7 @@ function increaseQuantity(productId) {
   const cartItem = cart.find(item => item.productId === productId);
   if (cartItem) {
     cartItem.quantity++;
+    cartItem.price = Math.round(cartItem.price * 100) / 100;
   };
 };
 
@@ -115,7 +116,8 @@ function removeProductFromCart(productId) {
 */
 
 function cartTotal() {
-  const total = cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
+  let total = cart.reduce((sum, product) => sum + product.price * product.quantity, 0);
+  total = Math.round(total * 100) / 100;
   return total;
 };
 
