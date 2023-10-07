@@ -124,6 +124,14 @@ function cartTotal() {
 /* Create a function called emptyCart that empties the products from the cart */
 
 function emptyCart() {
+  cart.forEach(item => {
+    const product = products.find(p => p.productId === item.productId);
+    if (product) {
+      product.quantity = 0;
+      item.quantity = 0;
+    }
+  });
+
   cart = [];
 }
 
@@ -135,6 +143,9 @@ function emptyCart() {
 function pay(amount) {
   const total = cartTotal();
   const remainingBalance = amount - total;
+  if (remainingBalance >= 0) {
+    emptyCart();
+  }
   return remainingBalance;
 }
 

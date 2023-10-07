@@ -54,7 +54,7 @@ function drawCheckout() {
     let cartSum = cartTotal();
 
     let div = document.createElement('div');
-    div.innerHTML = `<p>Cart Total: ${currencySymbol}${cartSum}`;
+    div.innerHTML = `<p>Cart Total: ${currencySymbol}${cartSum.toFixed(2)}</p>`;
     checkout.append(div);
 }
 
@@ -130,13 +130,16 @@ document.querySelector('.pay').addEventListener('click', (e) => {
         document.querySelector('.received').value = '';
         div.innerHTML = `
             <p>Cash Received: ${currencySymbol}${amount}</p>
-            <p>Remaining Balance: ${cashReturn}$</p>
+            <p>Remaining Balance: ${currencySymbol}${cashReturn}</p>
             <p>Please pay additional amount.</p>
             <hr/>
         `;
     }
 
     paymentSummary.append(div);
+
+    drawCart();
+    drawCheckout();
 });
 
 /* Standout suggestions */
