@@ -9,7 +9,7 @@ function drawProducts() {
             <div data-productId='${element.productId}'>
                 <img src='${element.image}'>
                 <h3>${element.name}</h3>
-                <p>price: ${currencySymbol}${element.price}</p>
+                <p>price: ${currencySymbol}${element.price.toFixed(2)}</p>
                 <button class="add-to-cart">Add to Cart</button>
             </div>
         `;
@@ -30,9 +30,9 @@ function drawCart() {
         cartItems += `
             <div data-productId='${element.productId}'>
                 <h3>${element.name}</h3>
-                <p>price: ${currencySymbol}${element.price}</p>
+                <p>price: ${currencySymbol}${element.price.toFixed(2)}</p>
                 <p>quantity: ${element.quantity}</p>
-                <p>total: ${currencySymbol}${itemTotal}</p>
+                <p>total: ${currencySymbol}${itemTotal.toFixed(2)}</p>
                 <button class="qup">+</button>
                 <button class="qdown">-</button>
                 <button class="remove">remove</button>
@@ -69,6 +69,8 @@ document.querySelector('.products').addEventListener('click', (e) => {
     addProductToCart(productId);
     drawCart();
     drawCheckout();
+    let paymentSummary = document.querySelector('.pay-summary');
+    paymentSummary.innerHTML = ``;
 });
 
 // Event delegation used to support dynamically added cart items
@@ -120,19 +122,21 @@ document.querySelector('.pay').addEventListener('click', (e) => {
     // If total cash received is greater than cart total thank customer
     // Else request additional funds
     if (cashReturn >= 0) {
+        document.querySelector('.received').value = '';
         div.innerHTML = `
-            <p>Cash Received: ${currencySymbol}${amount}</p>
-            <p>Cash Returned: ${currencySymbol}${cashReturn}</p>
+            <p>Cash Received: ${currencySymbol}${amount.toFixed(2)}</p>
+            <p>Cash Returned: ${currencySymbol}${cashReturn.toFixed(2)}</p>
             <p>Thank you!</p>
+            <hr/>
         `;
     } else {
         // reset cash field for next entry
         document.querySelector('.received').value = '';
         div.innerHTML = `
-            <p>Cash Received: ${currencySymbol}${amount}</p>
-            <p>Remaining Balance: ${currencySymbol}${cashReturn}</p>
+            <p>Cash Received: ${currencySymbol}${amount.toFixed(2)}</p>
+            <p>Remaining Balance: ${currencySymbol}${cashReturn.toFixed(2)}</p>
             <p>Please pay additional amount.</p>
-            <hr/>
+            <br/>
         `;
     }
 
